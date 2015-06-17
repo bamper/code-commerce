@@ -12,4 +12,4 @@
 */
 
 Route::get('/', 'IndexController@index');
-
+Route::get('categories', 'IndexController@categories');

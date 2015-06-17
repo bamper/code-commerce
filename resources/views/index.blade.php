@@ -32,7 +32,7 @@
             }
 
             .title {
-                font-size: 96px;
+                font-size: 56px;
                 margin-bottom: 40px;
             }
 
@@ -44,7 +44,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">Laravel Code Commerce</div>
                 <div class="quote">{{ Inspiring::quote() }}</div>
             </div>
         </div>
