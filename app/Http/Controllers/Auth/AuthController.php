@@ -3,8 +3,8 @@
 namespace CodeCommerce\Http\Controllers\Auth;
 
 use CodeCommerce\User;
-use Validator;
 use CodeCommerce\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
