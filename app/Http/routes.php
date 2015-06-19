@@ -12,4 +12,6 @@
 */
 
 Route::get('/', 'IndexController@index');
-Route::get('categories', 'IndexController@categories');
+
+Route::get('/admin/categories', 'AdminCategoriesController@index');
+Route::get('/admin/products', 'AdminProductsController@index');

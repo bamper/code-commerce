@@ -1,13 +1,13 @@
 @extends('layout')
 
-@section('title', 'Categories')
+@section('title', 'Products')
 
 @section('content')
     <div class="content content-left">
-        <h1>Categories</h1>
+        <h1>Products</h1>
         <ul class="list color-blue">
-            @foreach($categories as $category)
-                <li>{{ $category->name }}</li>
+            @foreach($products as $product)
+                <li>{{ $product->name }}</li>
             @endforeach
         </ul>
     </div>

@@ -1,0 +1,54 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    color: #B0BEC5;
+    display: table;
+    font-weight: 100;
+    font-family: 'Lato';
+}
+
+ul {
+    padding-left: 27px;
+    list-style-type: square;
+}
+
+ul > li {
+
+    font-size: 24px;
+}
+
+.container {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.content {
+    display: inline-block;
+}
+
+.content-left {
+    text-align: left;
+}
+
+.title {
+    font-size: 56px;
+    margin-bottom: 40px;
+}
+
+.quote {
+    font-size: 24px;
+}
+
+.list {
+    font-size: 19px;
+}
+
+.color-blue {
+    color: #66afe9;
+}
