@@ -30,4 +30,57 @@ class AdminProductsController extends Controller
 
         return view('products', compact('products'));
     }
+
+    /**
+     * Create a product.
+     *
+     * @return string
+     */
+    public function create()
+    {
+        return 'Create category';
+    }
+
+    /**
+     * Insert a product.
+     *
+     * @return string
+     */
+    public function insert()
+    {
+        return 'Insert category';
+    }
+
+    /**
+     * Edit a product.
+     *
+     * @param $id
+     * @return string
+     */
+    public function edit($id)
+    {
+        return "Edit category {$id}";
+    }
+
+    /**
+     * Update a product.
+     *
+     * @param $id
+     * @return string
+     */
+    public function update($id)
+    {
+        return "Updated category {$id}";
+    }
+
+    /**
+     * Delete a product.
+     *
+     * @param $id
+     * @return string
+     */
+    public function delete($id)
+    {
+        return "Deleted category {$id}";
+    }
 }

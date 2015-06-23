@@ -30,4 +30,57 @@ class AdminCategoriesController extends Controller
 
         return view('categories', compact('categories'));
     }
+
+    /**
+     * Create a category.
+     *
+     * @return string
+     */
+    public function create()
+    {
+        return 'Create category';
+    }
+
+    /**
+     * Insert a category.
+     *
+     * @return string
+     */
+    public function insert()
+    {
+        return 'Insert category';
+    }
+
+    /**
+     * Edit a category.
+     *
+     * @param $id
+     * @return string
+     */
+    public function edit($id)
+    {
+        return "Edit category {$id}";
+    }
+
+    /**
+     * Update a category.
+     *
+     * @param $id
+     * @return string
+     */
+    public function update($id)
+    {
+        return "Updated category {$id}";
+    }
+
+    /**
+     * Delete a category.
+     *
+     * @param $id
+     * @return string
+     */
+    public function delete($id)
+    {
+        return "Deleted category {$id}";
+    }
 }
