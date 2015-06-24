@@ -4,51 +4,42 @@ html, body {
 
 body {
     margin: 0;
-    padding: 0;
     width: 100%;
-    color: #B0BEC5;
-    display: table;
-    font-weight: 100;
-    font-family: 'Lato';
+    min-height: 2000px;
+    padding-top: 70px;
 }
 
-ul {
-    padding-left: 27px;
-    list-style-type: square;
+table {
+    table-layout: fixed;
 }
 
-ul > li {
-
-    font-size: 24px;
+table th, table td {
+    overflow: hidden;
 }
 
-.container {
-    text-align: center;
-    display: table-cell;
+tr {
     vertical-align: middle;
 }
 
-.content {
-    display: inline-block;
+.table tbody > tr > td {
+    vertical-align: top;
 }
 
-.content-left {
-    text-align: left;
+.table tbody > tr > td.vert-align {
+    vertical-align: middle;
 }
 
 .title {
-    font-size: 56px;
+    font-size: 96px;
     margin-bottom: 40px;
 }
 
-.quote {
-    font-size: 24px;
+.icon-ok {
+    font-size: 12px;
+    color: #2ca02c;
 }
 
-.list {
-    font-size: 19px;
-}
-
-.color-blue {
-    color: #66afe9;
+.icon-no {
+    font-size: 12px;
+    color: #d62728;
 }
