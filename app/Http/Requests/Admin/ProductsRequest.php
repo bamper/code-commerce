@@ -24,7 +24,7 @@ class ProductsRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|min:5',
+            'name' => 'required|min:3',
             'description' => 'required',
             'price' => array('required', 'regex:/^\d*(\.\d{2})?$/'),
             'featured' => 'required',
