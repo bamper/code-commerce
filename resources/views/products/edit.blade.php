@@ -27,6 +27,10 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
                 <div class="form-group">
+                    {!! Form::label('category', 'Category') !!}
+                    {!! Form::select('category_id', $categories, $product->category->id, ['class' => 'form-control', 'placeholder' => 'Select a category']) !!}
+                </div>
+                <div class="form-group">
                     {!! Form::label('name', 'Name') !!}
                     {!! Form::text('name', $product->name, ['class' => 'form-control', 'placeholder' => 'Product name']) !!}
                 </div>
@@ -44,9 +48,9 @@
                     {!! Form::radio('featured', 0, (!$product->featured) ? true : false, ['class' => 'field']) !!} No
                 </div>
                 <div class="form-group">
-                    {!! Form::label('recommend', 'Recommend:&nbsp;') !!}
-                    {!! Form::radio('recommend', 1, ($product->recommend)? true : false, ['class' => 'field']) !!} Yes
-                    {!! Form::radio('recommend', 0, (!$product->recommend) ? true : false, ['class' => 'field']) !!} No
+                    {!! Form::label('recommended', 'Recommended:&nbsp;') !!}
+                    {!! Form::radio('recommended', 1, ($product->recommended)? true : false, ['class' => 'field']) !!} Yes
+                    {!! Form::radio('recommended', 0, (!$product->recommended) ? true : false, ['class' => 'field']) !!} No
                 </div>
             </div>
         </div>

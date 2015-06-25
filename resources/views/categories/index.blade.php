@@ -28,12 +28,20 @@
                     <td class="vert-align">{{ $category->description }}</td>
                     <td class="vert-align text-center">
                         <a class="btn btn-sm btn-info" href="{{ route('categories.edit', ['id' => $category->id]) }}" title="Edit"><span class="fa fa-pencil"></span></a>
-                        <a class="btn btn-sm btn-danger" href="{{ route('categories.delete', ['id' => $category->id]) }}" title="Delete"><span class="fa fa-remove"></span></a>
+                        <a class="btn btn-sm btn-danger" href="{{ route('categories.destroy', ['id' => $category->id]) }}" title="Delete"><span class="fa fa-remove"></span></a>
                     </td>
                 </tr>
             @endforeach
             </tbody>
-            </tbody>
+            <tfoot class="hide-if-no-paging">
+            <tr>
+                <td colspan="4" class="text-center">
+                    <ul class="pagination pagination-centered">
+                        {!! $categories->render() !!}
+                    </ul>
+                </td>
+            </tr>
+            </tfoot>
         </table>
     </div>
 @endsection

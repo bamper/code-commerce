@@ -17,6 +17,23 @@ class Product extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'description', 'price', 'featured', 'recommend'];
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'featured',
+        'recommended',
+        'category_id'
+    ];
+
+    /**
+     * Show category of the product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo('CodeCommerce\Category');
+    }
 
 }

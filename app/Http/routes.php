@@ -13,7 +13,7 @@
 
 Route::get('/', ['as' => 'home', 'uses' => 'IndexController@index']);
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'where' => ['id' => '[0-9]+']], function () {
 
     // CRUD Categories
     Route::group(['prefix' => 'categories'], function () {
@@ -23,47 +23,33 @@ Route::group(['prefix' => 'admin'], function () {
 
         // Create
         Route::get('create', ['as' => 'categories.create', 'uses' => 'Admin\CategoriesController@create']);
-
-        Route::post('insert', ['as' => 'categories.insert', 'uses' => 'Admin\CategoriesController@insert']);
+        Route::post('store', ['as' => 'categories.store', 'uses' => 'Admin\CategoriesController@store']);
 
         // Update
-        Route::get('edit/{id}', [
-            'as' => 'categories.edit',
-            'uses' => 'Admin\CategoriesController@edit'
-        ])->where('id', '[0-9]+');
-
-        Route::put('update/{id}', [
-            'as' => 'categories.update',
-            'uses' => 'Admin\CategoriesController@update'
-        ])->where('id', '[0-9]+');
+        Route::get('edit/{id}', ['as' => 'categories.edit', 'uses' => 'Admin\CategoriesController@edit']);
+        Route::put('update/{id}', ['as' => 'categories.update', 'uses' => 'Admin\CategoriesController@update']);
 
         // Delete
-        Route::get('delete/{id}', [
-            'as' => 'categories.delete',
-            'uses' => 'Admin\CategoriesController@delete'
-        ])->where('id', '[0-9]+');
+        Route::get('destroy/{id}', ['as' => 'categories.destroy', 'uses' => 'Admin\CategoriesController@destroy']);
 
     });
 
     // CRUD Products
     Route::group(['prefix' => 'products'], function () {
 
-        // Outra forma de validar os parâmetros em comum
-        Route::pattern('id', '[0-9]+');
-
         // List
         Route::get('/', ['as' => 'products', 'uses' => 'Admin\ProductsController@index']);
 
         // Create
         Route::get('create', ['as' => 'products.create', 'uses' => 'Admin\ProductsController@create']);
-        Route::post('insert', ['as' => 'products.insert', 'uses' => 'Admin\ProductsController@insert']);
+        Route::post('store', ['as' => 'products.store', 'uses' => 'Admin\ProductsController@store']);
 
         // Update
         Route::get('edit/{id}', ['as' => 'products.edit', 'uses' => 'Admin\ProductsController@edit']);
         Route::put('update/{id}', ['as' => 'products.update', 'uses' => 'Admin\ProductsController@update']);
 
         // Delete
-        Route::get('delete/{id}', ['as' => 'products.delete', 'uses' => 'Admin\ProductsController@delete']);
+        Route::get('destroy/{id}', ['as' => 'products.destroy', 'uses' => 'Admin\ProductsController@destroy']);
 
     });
 

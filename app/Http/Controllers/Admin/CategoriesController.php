@@ -28,7 +28,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = $this->categories->all();
+        $categories = $this->categories->paginate(10);
 
         return view('categories.index', compact('categories'));
     }
@@ -49,7 +49,7 @@ class CategoriesController extends Controller
      * @param CategoriesRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function insert(CategoriesRequest $request)
+    public function store(CategoriesRequest $request)
     {
         $input = $request->all();
 
@@ -92,7 +92,7 @@ class CategoriesController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $this->categories->find($id)->delete();
 

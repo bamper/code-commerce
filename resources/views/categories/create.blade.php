@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="content">
-        {!! Form::open(['route' => 'categories.insert']) !!}
+        {!! Form::open(['route' => 'categories.store']) !!}
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
                 <legend>New Category</legend>

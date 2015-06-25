@@ -19,4 +19,14 @@ class Category extends Model
      */
     protected $fillable = ['name', 'description'];
 
+    /**
+     * List all products of the category.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products()
+    {
+        return $this->hasMany('CodeCommerce\Product');
+    }
+
 }

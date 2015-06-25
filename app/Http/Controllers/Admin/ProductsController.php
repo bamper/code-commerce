@@ -2,6 +2,7 @@
 
 namespace CodeCommerce\Http\Controllers\Admin;
 
+use CodeCommerce\Category;
 use CodeCommerce\Product;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
@@ -28,19 +29,22 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = $this->products->all();
+        $products = $this->products->paginate(10);
 
         return view('products.index', compact('products'));
     }
 
     /**
-     * Create a product.
+     * Create a product with category.
      *
+     * @param Category $category
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Category $category)
     {
-        return view('products.create');
+        $categories = $category->lists('name', 'id');
+
+        return view('products.create', compact('categories'));
     }
 
     /**
@@ -49,7 +53,7 @@ class ProductsController extends Controller
      * @param ProductsRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function insert(ProductsRequest $request)
+    public function store(ProductsRequest $request)
     {
         $input = $request->all();
 
@@ -63,13 +67,15 @@ class ProductsController extends Controller
      * Edit a product.
      *
      * @param $id
+     * @param Category $category
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function edit($id, Category $category)
     {
         $product = $this->products->find($id);
+        $categories = $category->lists('name', 'id');
 
-        return view('products.edit', compact('product'));
+        return view('products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -92,7 +98,7 @@ class ProductsController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $this->products->find($id)->delete();
 
