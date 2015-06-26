@@ -7,10 +7,8 @@
 
     <title>Laravel</title>
 
-    <link href='{{ asset('/assets/css/bootstrap.min.css') }}' rel='stylesheet' type='text/css'>
-    <link href='{{ asset('/assets/css/bootstrap-custom.css') }}' rel='stylesheet' type='text/css'>
-    <link href='{{ asset('/assets/css/font-awesome.min.css') }}' rel='stylesheet' type='text/css'>
-    <link href='{{ asset('/assets/css/style.css') }}' rel='stylesheet' type='text/css'>
+    <link href='{{ asset('/css/app.css') }}' rel='stylesheet' type='text/css'>
+    <link href='{{ asset('/css/app-custom.css') }}' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
@@ -41,8 +39,8 @@
     @yield('content')
 </div>
 
-<script src="{{ asset('/assets/js/jquery.min.js') }}"></script>
-<script src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('/js/jquery.min.js') }}"></script>
+<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 
 </body>
 </html>

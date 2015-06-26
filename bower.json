@@ -1,0 +1,14 @@
+{
+    "name": "laravel-commerce",
+    "version": "1.0.0",
+    "authors": [
+        "Anderson Costa <arcostasi@gmail.com>"
+    ],
+    "license": "BSD-3",
+    "homepage": "http://arcosta.si",
+    "dependencies": {
+        "jquery": "1.11.3",
+        "bootstrap": "~3.3.5",
+        "font-awesome": "~4.3.0"
+    }
+}

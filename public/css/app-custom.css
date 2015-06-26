@@ -29,6 +29,14 @@ tr {
     vertical-align: middle;
 }
 
+.pagination {
+    margin: 8px 0 6px 0;
+}
+
+.table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th {
+    border-top-width: 2px;
+}
+
 .title {
     font-size: 96px;
     margin-bottom: 40px;
