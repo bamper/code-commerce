@@ -27,6 +27,16 @@ class Product extends Model
     ];
 
     /**
+     * List all images of the product.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function images()
+    {
+        return $this->hasMany('CodeCommerce\ProductImage');
+    }
+
+    /**
      * Show category of the product
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
