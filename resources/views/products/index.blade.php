@@ -18,12 +18,10 @@
             <tr>
                 <td class="col-sm-1 text-center">ID</td>
                 <td class="col-sm-2">Name</td>
-                <td class="col-sm-3">Description</td>
+                <td class="col-sm-4">Description</td>
                 <td class="col-sm-1 text-center">Price</td>
                 <td class="col-sm-2 text-center">Category</td>
-                <td class="col-sm-1 text-center">Featured</td>
-                <td class="col-sm-1 text-center">Recomend</td>
-                <td class="col-sm-1 text-center">Actions</td>
+                <td class="col-sm-2 text-center">Actions</td>
             </tr>
             </thead>
             <tbody>
@@ -34,15 +32,9 @@
                     <td class="vert-align text-justify">{{ $product->description }}</td>
                     <td class="vert-align text-center">{{ $product->price }}</td>
                     <td class="vert-align text-center">{{ $product->category->name }}</td>
-                    <td class="vert-align text-center">{!! ($product->featured) ? '<span
-                                class="glyphicon glyphicon-ok icon-ok"></span>' : '<span
-                                class="glyphicon glyphicon-remove icon-no"></span>' !!}
-                    </td>
-                    <td class="vert-align text-center">{!! ($product->recommended) ? '<span
-                                class="glyphicon glyphicon-ok icon-ok"></span>' : '<span
-                                class="glyphicon glyphicon-remove icon-no"></span>' !!}
-                    </td>
                     <td class="vert-align text-center">
+                        <a class="btn btn-sm btn-default" href="{{ route('products.images', ['id' => $product->id]) }}"><span
+                                    class="fa fa-image"></span></a>
                         <a class="btn btn-sm btn-info" href="{{ route('products.edit', ['id' => $product->id]) }}"><span
                                     class="fa fa-pencil"></span></a>
                         <a class="btn btn-sm btn-danger" href="{{ route('products.destroy', ['id' => $product->id]) }}"><span
@@ -53,7 +45,7 @@
             </tbody>
             <tfoot class="hide-if-no-paging">
             <tr>
-                <td colspan="8" class="text-center">
+                <td colspan="6" class="text-center">
                     <ul class="pagination pagination-centered">
                         {!! $products->render() !!}
                     </ul>
