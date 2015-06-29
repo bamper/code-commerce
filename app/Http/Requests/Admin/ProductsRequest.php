@@ -28,7 +28,8 @@ class ProductsRequest extends Request
             'description' => 'required',
             'price' => array('required', 'regex:/^\d*(\.\d{2})?$/'),
             'featured' => 'required',
-            'recommended' => 'required'
+            'recommended' => 'required',
+            'tags' => 'required|unique:tags'
         ];
     }
 }

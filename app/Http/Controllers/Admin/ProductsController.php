@@ -9,6 +9,7 @@ use CodeCommerce\Http\Controllers\Controller;
 use CodeCommerce\Http\Requests\Admin\ProductsRequest;
 use CodeCommerce\ProductImage;
 
+use CodeCommerce\Tag;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
@@ -60,9 +61,13 @@ class ProductsController extends Controller
     public function store(ProductsRequest $request)
     {
         $input = $request->all();
+        $tags = $request->only('tags');
+
+        $tagsId = $this->storeTags($tags);
 
         $product = $this->products->fill($input);
         $product->save();
+        $product->tags()->attach($tagsId);
 
         return redirect()->route('products');
     }
@@ -91,6 +96,10 @@ class ProductsController extends Controller
      */
     public function update(ProductsRequest $request, $id)
     {
+        $tags = $request->only('tags');
+        $tagsId = $this->storeTags($tags);
+
+        $this->products->find($id)->tags()->sync($tagsId);
         $this->products->find($id)->update($request->all());
 
         return redirect()->route('products');
@@ -177,6 +186,31 @@ class ProductsController extends Controller
         $image->delete();
 
         return redirect()->route('products.images', ['id' => $product->id]);
+    }
+
+    /**
+     * Store Tags.
+     *
+     * @param $inputTags
+     * @return mixed
+     */
+    private function storeTags($inputTags)
+    {
+        $tags = explode(',', $inputTags['tags']);
+        $tagsId = [];
+
+        foreach ($tags as $tag) {
+            $tagObj = Tag::whereName(trim($tag))->first();
+
+            if (!empty($tagObj)) {
+                $tagsId[] = $tagObj->id;
+            } else {
+                $tagObj = Tag::create(['name' => trim($tag)]);
+                $tagsId[] = $tagObj->id;
+            }
+        }
+
+        return $tagsId;
     }
 
 }

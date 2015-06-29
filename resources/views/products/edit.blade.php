@@ -52,6 +52,10 @@
                     {!! Form::radio('recommended', 1, ($product->recommended)? true : false, ['class' => 'field']) !!} Yes
                     {!! Form::radio('recommended', 0, (!$product->recommended) ? true : false, ['class' => 'field']) !!} No
                 </div>
+                <div class="form-group">
+                    {!! Form::label('tags', 'Tags (separate with commas)') !!}
+                    {!! Form::textarea('tags', $product->tagList, ['class' => 'form-control', 'rows' => 2, 'placeholder' => 'Example: tag1, tag2, tag3...']) !!}
+                </div>
             </div>
         </div>
         <div class="row">

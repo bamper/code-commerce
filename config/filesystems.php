@@ -69,10 +69,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key'    => '',
-            'secret' => '',
-            'region' => 'Sao Paulo',
-            'bucket' => '',
+            'key'    => 'AKIAI6BIHB5DQKFQK5IA',
+            'secret' => '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',
+            'region' => 'sa-east-1',
+            'bucket' => 'arcostasi',
         ],
 
         'rackspace' => [

@@ -43,6 +43,10 @@
                     {!! Form::text('price', null, ['class' => 'form-control', 'placeholder' => '0.00']) !!}
                 </div>
                 <div class="form-group">
+                    {!! Form::label('tags', 'Tags (separate with commas)') !!}
+                    {!! Form::textarea('tags', null, ['class' => 'form-control', 'rows' => 2, 'placeholder' => 'Example: tag1, tag2, tag3...']) !!}
+                </div>
+                <div class="form-group">
                     {!! Form::label('featured', 'Featured:&nbsp;') !!}
                     {!! Form::radio('featured', 1, false, ['class' => 'field']) !!} Yes
                     {!! Form::radio('featured', 0, false, ['class' => 'field']) !!} No
@@ -52,6 +56,7 @@
                     {!! Form::radio('recommended', 1, false, ['class' => 'field']) !!} Yes
                     {!! Form::radio('recommended', 0, false, ['class' => 'field']) !!} No
                 </div>
+
             </div>
         </div>
         <div class="row">
