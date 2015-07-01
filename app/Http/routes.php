@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', ['as' => 'home', 'uses' => 'IndexController@index']);
+Route::get('/', ['as' => 'home', 'uses' => 'StoreController@index']);
+Route::get('/{id}', ['as' => 'store.bycategory', 'uses' => 'StoreController@productCategory']);
 
 Route::group(['prefix' => 'admin', 'where' => ['id' => '[0-9]+']], function () {
 

@@ -57,6 +57,40 @@ class Product extends Model
     }
 
     /**
+     * List all featured products.
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured', '=', true);
+    }
+
+    /**
+     * List all recommended products.
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeRecommended($query)
+    {
+        return $query->where('recommended', '=', true);
+    }
+
+    /**
+     * List all products by category id.
+     *
+     * @param $query
+     * @param $id
+     * @return mixed
+     */
+    public function scopeOfCategoryId($query, $id)
+    {
+        return $query->where('category_id', '=', $id);
+    }
+
+    /**
      * Create a new attribute of name with description.
      *
      * @return string
