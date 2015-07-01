@@ -4,10 +4,10 @@
             <div class="single-products">
                 <div class="productinfo text-center">
                     @if(count($product->images))
-                        <img src="{{ url('/uploads/'.$product->images->first()->id.'.'.$product->images->first()->extension) }}"
+                        <img src="{{ url('/uploads/'.$product->images->first()->id . '.' . $product->images->first()->extension) }}"
                              alt="{{ $product->name }}" width="300" height="300"/>
                     @else
-                        <img src="{{ url('images/no-img.jpg') }}" alt="{{ $product->name }}" width="300" height="300"/>
+                        <img src="{{ url('images/no-img.png') }}" alt="{{ $product->name }}" width="200"/>
                     @endif
                     <h2>R$ {{ $product->price }}</h2>
 
