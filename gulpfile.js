@@ -14,9 +14,26 @@ var elixir = require('laravel-elixir');
 var bowerDir = 'vendor/bower_components/';
 
 elixir(function (mix) {
-    mix.copy(bowerDir + 'bootstrap/fonts', 'public/fonts');
-    mix.copy(bowerDir + 'font-awesome/fonts', 'public/fonts');
-    mix.copy(bowerDir + 'jquery/dist/jquery.min.js', 'public/js/jquery.min.js');
-    mix.copy(bowerDir + 'bootstrap/dist/js/bootstrap.min.js', 'public/js/bootstrap.min.js');
-    mix.less('app.less');
+
+    mix.styles([
+        'bootstrap.min.css',
+        'font-awesome.min.css',
+        'prettyPhoto.css',
+        'animate.css',
+        'main.css',
+        'responsive.css'
+    ], 'public/css/app.css');
+
+    mix.scripts([
+        'jquery.min.js',
+        'bootstrap.min.js',
+        'jquery.scrollUp.min.js',
+        'price-range.js',
+        'jquery.prettyPhoto.js',
+        'main.js'
+    ], 'public/js/app.js');
+
+    mix.version(['css/app.css', 'js/app.js']);
+    mix.copy('resources/assets/fonts', 'public/build/fonts');
+
 });
