@@ -9,10 +9,10 @@
                     @else
                         <img src="{{ url('images/no-img.png') }}" alt="{{ $product->name }}" width="200"/>
                     @endif
-                    <h2>R$ {{ $product->price }}</h2>
+                    <h2>R$ {{ number_format($product->price, 2, ',', '.') }}</h2>
 
                     <p>{{ $product->name }}</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i
+                    <a href="{{ route('store.product', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i
                                 class="fa fa-crosshairs"></i>Mais detalhes</a>
 
                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Adicionar
@@ -20,10 +20,10 @@
                 </div>
                 <div class="product-overlay">
                     <div class="overlay-content">
-                        <h2>R$ {{ $product->price }}</h2>
+                        <h2>R$ {{ number_format($product->price, 2, ',', '.') }}</h2>
 
                         <p>{{ $product->name }}</p>
-                        <a href="#" class="btn btn-default add-to-cart"><i
+                        <a href="{{ route('store.product', ['id' => $product->id]) }}" class="btn btn-default add-to-cart"><i
                                     class="fa fa-crosshairs"></i>Mais detalhes</a>
 
                         <a href="#" class="btn btn-default add-to-cart"><i

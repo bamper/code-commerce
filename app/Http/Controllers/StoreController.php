@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use CodeCommerce\Category;
 use CodeCommerce\Product;
+use CodeCommerce\Tag;
 use CodeCommerce\Http\Requests;
 
 class StoreController extends Controller
@@ -14,19 +15,27 @@ class StoreController extends Controller
      * @var Category
      */
     private $category;
+
     /**
      * @var Product
      */
     private $product;
 
     /**
+     * @var Tag
+     */
+    private $tag;
+
+    /**
      * @param Category $category
      * @param Product $product
+     * @param Tag $tag
      */
-    function __construct(Category $category, Product $product)
+    function __construct(Category $category, Product $product, Tag $tag)
     {
         $this->category = $category;
         $this->product = $product;
+        $this->tag = $tag;
     }
 
     /**
@@ -49,11 +58,34 @@ class StoreController extends Controller
      * @param $id
      * @return \Illuminate\View\View
      */
-    public function productCategory($id)
+    public function category($id)
     {
         $categories = $this->category->orderBy('name')->get();
-        $products = $this->product->OfCategoryId($id)->get();
+        $products = $this->product->OfCategory($id)->get();
 
-        return view('store.products-category', compact('categories', 'products'));
+        return view('store.partial.products-category', compact('categories', 'products'));
+    }
+
+
+    public function product($id)
+    {
+        $categories = $this->category->orderBy('name')->get();
+        $product = $this->product->find($id);
+
+        return view('store.partial.product-details', compact('categories', 'product'));
+    }
+
+    /**
+     * Show all products by tag.
+     *
+     * @param $id
+     * @return \Illuminate\View\View
+     */
+    public function tag($id)
+    {
+        $categories = $this->category->orderBy('name')->get();
+        $tag = $this->tag->find($id);
+
+        return view('store.partial.products-tag', compact('categories', 'tag'));
     }
 }

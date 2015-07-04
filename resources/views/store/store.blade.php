@@ -21,6 +21,7 @@
                         <ul class="nav nav-pills">
                             <li><a href="#"><i class="fa fa-phone"></i> (19) 5555-5555</a></li>
                             <li><a href="#"><i class="fa fa-envelope"></i> atendimento@schoolofnet.com</a></li>
+                            <li><a href="{{ route('products') }}"><i class="fa fa-lock"></i> Admin</a></li>
                         </ul>
                     </div>
                 </div>
@@ -123,8 +124,8 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
-                <p class="pull-left">Copyright © 2013 E-Shop Inc. All rights reserved.</p>
-                <p class="pull-right">Designed by <span><a target="_blank" href="http://invoinn.com/">InvoInn</a></span></p>
+                <p class="pull-left">Copyright © 2015 CodeCommerce. All rights reserved.</p>
+                <p class="pull-right">Designed by <span><a target="_blank" href="http://code.education/">code.education</a></span></p>
             </div>
         </div>
     </div>

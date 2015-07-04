@@ -7,12 +7,12 @@
 
     <title>Laravel</title>
 
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ elixir('css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/css/app-custom.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar header-bottom navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
@@ -39,8 +39,7 @@
     @yield('content')
 </div>
 
-<script src="{{ asset('/js/jquery.min.js') }}"></script>
-<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+<script src="{{ elixir('js/app.js') }}"></script>
 <script src="{{ asset('/js/custom.js') }}"></script>
 
 </body>
