@@ -5,8 +5,8 @@ namespace CodeCommerce\Http\Controllers;
 use CodeCommerce\Cart;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Symfony\Component\HttpFoundation\Request;
 
 class CartController extends Controller
 {
@@ -78,14 +78,21 @@ class CartController extends Controller
      * @param Request $request
      * @return string
      */
-    public function qtty(Request $request)
+    public function change(Request $request)
     {
-        $data = $request->all();
-        $cart = $this->getCart();
+        try {
+            $id = $request->input('id');
+            $qtty = $request->input('qtty');
 
-        $cart->updateQtty($data['id'], $data['qtty']);
+            $cart = $this->getCart();
+            $cart->updateQtty($id, $qtty);
 
-        return true;
+            return ['status' => 'success'];
+
+        } catch (\Exception $e) {
+
+            return ['status' => 'error', 'message' => $e->getMessage()];
+        }
     }
 
     /**

@@ -7,12 +7,13 @@
                 <table class="table table-condensed">
                     <thead>
                     <tr class="cart_menu">
-                        <td class="image">Iten</td>
-                        <td class="description">Descrição</td>
-                        <td class="price">Valor</td>
-                        <td class="qty text-center">Qtde</td>
-                        <td class="total">Total</td>
-                        <td>&nbsp;</td>
+                        <td class="image col-sx-1 col-sm-1 col-md-1">Iten</td>
+                        <td class="description col-sx-3 col-sm-3 col-md-3">Descrição</td>
+                        <td class="price col-sx-2 col-sm-2 col-md-2 text-left">Valor</td>
+                        <td class="qty col-sx-2 col-sm-2 col-md-2 text-center">Qtde</td>
+                        <td class="col-sx-1 col-sm-1 col-md-1">&nbsp;</td>
+                        <td class="total col-sx-2 col-sm-2 col-md-2 text-left">Total</td>
+                        <td class="col-sx-1 col-sm-1 col-md-1">&nbsp;</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -20,7 +21,6 @@
                         <tr>
                             <td class="cart_product">
                                 <a href="{{ route('store.product', ['id' => $key]) }}">
-                                    <img src=""
                                 </a>
                             </td>
                             <td>
@@ -28,31 +28,33 @@
 
                                 <p>Código: {{ $key }}</p>
                             </td>
-                            <td class="cart_total_price">
-                                R$ {{ $item['price'] }}
+                            <td class="cart_total_price text-left">
+                                R$ {{ number_format($item['price'], 2, ',', '.') }}
                             </td>
-                            <td class="cart_total_price text-center">
-                                <input type="text" class="form-control text-center number-input" onkeypress="validate(event)" key="{{ $key }}" value="{{ $item['qtty'] }}">
+                            <td>
+                                <div class="input-group">
+                                    <input data-id="{{ $key }}" name="qtty-{{ $key }}" type="text" class="pull-right spin" value="{{ $item['qtty'] }}">
+                                </div>
                             </td>
-                            <td class="cart_total_price">
-                                R$ {{ $item['price'] * $item['qtty'] }}
+                            <td>&nbsp;</td>
+                            <td class="cart_total_price text-left">
+                                R$ {{ number_format($item['price'] * $item['qtty'], 2, ',', '.') }}
                             </td>
-                            <td class="cart_delete">
-                                <button class="btn btn-info btn-sm refresh">
-                                    <i class="fa fa-refresh"></i>
-                                </button>
-                                <a href="{{ route('cart.destroy', ['id' => $key]) }}" class="cart_quantity_button">Delete</a>
+                            <td>
+                                <a href="{{ route('cart.destroy', ['id' => $key]) }}" class="btn btn-sm btn-danger">
+                                    <span class="fa fa-remove"></span>
+                                </a>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center">
-                                <h4>&nbsp;<p>Nenhum item foi adicionado no carrinho!</p></h4>
+                            <td colspan="7" class="text-center">
+                                <h4><p>Nenhum item foi adicionado no carrinho!</p></h4>
                             </td>
                         </tr>
                     @endforelse
                     <tr class="cart_menu">
-                        <td colspan="6">
+                        <td colspan="7">
                             <div class="pull-right">
                                 <span style="margin-right: 60px;">TOTAL: R$ {{ $cart->getTotal() }}</span>
                                 <a href="" class="btn btn-success">Finalizar a compra</a>
@@ -66,30 +68,30 @@
     </section>
 @stop
 @section('script')
-    <script type="text/javascript">
-        $('.refresh').on('click', function () {
-            var id = $(this).closest('tr').find('input[type="text"]').attr('key');
-            var qtty = $(this).closest('tr').find('input[type="text"]').val();
+    <script>
+        $('.spin').TouchSpin({
+            min: 1,
+            max: 1000,
+            postfix: '<span class="fa fa-refresh"></span>',
+            postfix_extraclass: "btn btn-default"
+        });
+
+        $(".bootstrap-touchspin-postfix").on('click', function() {
+            var id = $(this).closest('.input-group').find('input[type="text"]').attr('data-id');
+            var qtty = $(this).closest('.input-group').find('input[type="text"]').val();
 
             $.ajax({
                 type: 'POST',
                 url: "{{ route('store.cart.change') }}",
                 data: {_token: "{{ csrf_token() }}", id: id, qtty: qtty},
-                success: function (data) {
-                    document.location.reload();
+                success: function(data) {
+                    if (data.status == 'success') {
+                        document.location.reload();
+                    } else {
+                        console.log(data);
+                    }
                 }
             });
-        });
-
-        function validate(evt) {
-            var theEvent = evt || window.event;
-            var key = theEvent.keyCode || theEvent.which;
-            key = String.fromCharCode(key);
-            var regex = /[0-9]|\./;
-            if (!regex.test(key)) {
-                theEvent.returnValue = false;
-                if (theEvent.preventDefault) theEvent.preventDefault();
-            }
-        }
+        }).attr('title', 'Atualizar carrinho');
     </script>
 @stop
