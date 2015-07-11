@@ -67,9 +67,8 @@ class Cart
     {
         $total = 0;
 
-        foreach($this->items as $item)
-        {
-            $total = $item['qtty'] * $item['price'];
+        foreach ($this->items as $item) {
+            $total += $item['qtty'] * $item['price'];
         }
 
         return $total;
@@ -83,7 +82,7 @@ class Cart
      */
     public function updateQtty($id, $qtty)
     {
-        if($qtty == 0) {
+        if ($qtty == 0) {
             $this->destroy($id);
         } else {
             $this->items[$id]['qtty'] = $qtty;

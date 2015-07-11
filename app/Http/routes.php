@@ -20,6 +20,8 @@ Route::get('cart/add/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']
 Route::get('cart/destroy/{id}', ['as' => 'cart.destroy', 'uses' => 'CartController@destroy']);
 Route::post('cart/change', ['as' => 'store.cart.change', 'uses' => 'CartController@change']);
 
+Route::get('checkout/place', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
+
 Route::group(['prefix' => 'admin', 'where' => ['id' => '[0-9]+']], function () {
 
     // CRUD Categories

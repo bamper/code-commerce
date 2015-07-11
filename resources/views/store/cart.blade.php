@@ -33,7 +33,8 @@
                             </td>
                             <td>
                                 <div class="input-group">
-                                    <input data-id="{{ $key }}" name="qtty-{{ $key }}" type="text" class="pull-right spin" value="{{ $item['qtty'] }}">
+                                    <input data-id="{{ $key }}" name="qtty-{{ $key }}" type="text"
+                                           class="pull-right spin" value="{{ $item['qtty'] }}">
                                 </div>
                             </td>
                             <td>&nbsp;</td>
@@ -56,7 +57,7 @@
                     <tr class="cart_menu">
                         <td colspan="7">
                             <div class="pull-right">
-                                <span style="margin-right: 60px;">TOTAL: R$ {{ $cart->getTotal() }}</span>
+                                <span style="margin-right: 60px;">TOTAL: R$ {{ number_format($cart->getTotal(), 2, ',', '.') }}</span>
                                 <a href="" class="btn btn-success">Finalizar a compra</a>
                             </div>
                         </td>
@@ -76,7 +77,7 @@
             postfix_extraclass: "btn btn-default"
         });
 
-        $(".bootstrap-touchspin-postfix").on('click', function() {
+        $(".bootstrap-touchspin-postfix").on('click', function () {
             var id = $(this).closest('.input-group').find('input[type="text"]').attr('data-id');
             var qtty = $(this).closest('.input-group').find('input[type="text"]').val();
 
@@ -84,7 +85,7 @@
                 type: 'POST',
                 url: "{{ route('store.cart.change') }}",
                 data: {_token: "{{ csrf_token() }}", id: id, qtty: qtty},
-                success: function(data) {
+                success: function (data) {
                     if (data.status == 'success') {
                         document.location.reload();
                     } else {
