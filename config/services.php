@@ -24,14 +24,14 @@ return [
     ],
 
     'ses' => [
-        'key'    => '',
+        'key' => '',
         'secret' => '',
         'region' => 'us-east-1',
     ],
 
     'stripe' => [
-        'model'  => CodeCommerce\User::class,
-        'key'    => '',
+        'model' => CodeCommerce\User::class,
+        'key' => '',
         'secret' => '',
     ],
 

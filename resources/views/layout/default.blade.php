@@ -28,8 +28,18 @@
                 <li><a href="{{ route('products') }}">Products</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
+                @if (Auth::guest())
+                    <li><a href="{{ url('/auth/login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                    <li><a href="{{ url('/auth/register') }}"><i class="fa fa-user-plus"></i> Register</a></li>
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-close"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

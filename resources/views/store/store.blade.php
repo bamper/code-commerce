@@ -19,8 +19,8 @@
                 <div class="col-sm-6">
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
-                            <li><a href="#"><i class="fa fa-phone"></i> (19) 5555-5555</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> atendimento@schoolofnet.com</a></li>
+                            <li><a href="{{ route('home') }}"><i class="fa fa-phone"></i> (19) 5555-5555</a></li>
+                            <li><a href="{{ route('home') }}"><i class="fa fa-envelope"></i> atendimento@schoolofnet.com</a></li>
                             <li><a href="{{ route('products') }}"><i class="fa fa-lock"></i> Admin</a></li>
                         </ul>
                     </div>
@@ -53,7 +53,18 @@
                             <li><a href="#"><i class="fa fa-user"></i> Minha conta</a></li>
                             <li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
-                            <li><a href="#"><i class="fa fa-lock"></i> Login</a></li>
+                            @if (Auth::guest())
+                                <li><a href="{{ url('/auth/login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                                <li><a href="{{ url('/auth/register') }}"><i class="fa fa-user-plus"></i> Register</a></li>
+                            @else
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-close"></i> Logout</a></li>
+                                    </ul>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -82,7 +93,18 @@
                                     <li><a href="#">Product Details</a></li>
                                     <li><a href="#">Checkout</a></li>
                                     <li><a href="{{ route('cart') }}">Cart</a></li>
-                                    <li><a href="#">Login</a></li>
+                                    @if (Auth::guest())
+                                        <li><a href="{{ url('/auth/login') }}"><i class="fa fa-lock"></i> Login</a></li>
+                                        <li><a href="{{ url('/auth/register') }}"><i class="fa fa-user-plus"></i> Register</a></li>
+                                    @else
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                               aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-close"></i> Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    @endif
                                 </ul>
                             </li>
 
@@ -121,7 +143,7 @@
 </section>
 
 <footer id="footer"><!--Footer-->
-    <div class="footer-bottom">
+    <div class="footer navbar-fixed-bottom footer-bottom">
         <div class="container">
             <div class="row">
                 <p class="pull-left">Copyright © 2015 CodeCommerce. All rights reserved.</p>

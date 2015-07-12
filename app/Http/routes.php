@@ -12,6 +12,7 @@
 */
 
 Route::get('/', ['as' => 'home', 'uses' => 'StoreController@index']);
+Route::get('/home', ['as' => 'home', 'uses' => 'StoreController@index']);
 Route::get('category/{id}', ['as' => 'store.category', 'uses' => 'StoreController@category']);
 Route::get('product/{id}', ['as' => 'store.product', 'uses' => 'StoreController@product']);
 Route::get('product/tag/{id}', ['as' => 'store.product.tag', 'uses' => 'StoreController@tag']);
@@ -22,7 +23,13 @@ Route::post('cart/change', ['as' => 'store.cart.change', 'uses' => 'CartControll
 
 Route::get('checkout/place', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
 
-Route::group(['prefix' => 'admin', 'where' => ['id' => '[0-9]+']], function () {
+
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController'
+]);
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'where' => ['id' => '[0-9]+']], function () {
 
     // CRUD Categories
     Route::group(['prefix' => 'categories'], function () {
@@ -60,7 +67,7 @@ Route::group(['prefix' => 'admin', 'where' => ['id' => '[0-9]+']], function () {
         // Delete
         Route::get('destroy/{id}', ['as' => 'products.destroy', 'uses' => 'Admin\ProductsController@destroy']);
 
-        Route::group(['prefix' => 'images'], function() {
+        Route::group(['prefix' => 'images'], function () {
 
             // Get a image by id
             Route::get('{id}/product', ['as' => 'products.images', 'uses' => 'Admin\ProductsController@images']);
