@@ -20,8 +20,23 @@ class OrderItem extends Model
         'total'
     ];
 
+    /**
+     * Return orders
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function order()
     {
         return $this->belongsTo('CodeCommerce\Order');
+    }
+
+    /**
+     * Return products
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function product()
+    {
+        return $this->belongsTo('CodeCommerce\Product');
     }
 }

@@ -5,7 +5,7 @@ namespace CodeCommerce\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class Authenticate
+class AuthenticateAdmin
 {
     /**
      * The Guard implementation.
@@ -33,12 +33,8 @@ class Authenticate
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->guest()) {
-            if ($request->ajax()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest('auth/login');
-            }
+        if (!$this->auth->check() || !$this->auth->user()->isAdmin()) {
+            return redirect()->guest('auth/login');
         }
 
         return $next($request);

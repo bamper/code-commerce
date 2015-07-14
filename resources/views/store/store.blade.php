@@ -21,7 +21,9 @@
                         <ul class="nav nav-pills">
                             <li><a href="{{ route('home') }}"><i class="fa fa-phone"></i> (19) 5555-5555</a></li>
                             <li><a href="{{ route('home') }}"><i class="fa fa-envelope"></i> atendimento@schoolofnet.com</a></li>
-                            <li><a href="{{ route('products') }}"><i class="fa fa-lock"></i> Admin</a></li>
+                            @if (Auth::check() && Auth::user()->isAdmin())
+                                <li><a href="{{ route('products') }}"><i class="fa fa-lock"></i> Admin</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -50,20 +52,13 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-user"></i> Minha conta</a></li>
-                            <li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                            <li><a href="{{ route('account.orders') }}"><i class="fa fa-user"></i> Minha conta</a></li>
                             <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
                             @if (Auth::guest())
                                 <li><a href="{{ url('/auth/login') }}"><i class="fa fa-lock"></i> Login</a></li>
-                                <li><a href="{{ url('/auth/register') }}"><i class="fa fa-user-plus"></i> Register</a></li>
                             @else
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-close"></i> Logout</a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="{{ url('/auth/logout') }}">
+                                        <i class="fa fa-power-off"></i> Logout ({{ Auth::user()->name }})</a></li>
                             @endif
                         </ul>
                     </div>
@@ -89,21 +84,14 @@
                             <li><a href="/" class="active">Home</a></li>
                             <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a href="#">Products</a></li>
-                                    <li><a href="#">Product Details</a></li>
-                                    <li><a href="#">Checkout</a></li>
+                                    <li><a href="{{ route('home') }}">Products</a></li>
+                                    <li><a href="{{ route('home') }}">Product Details</a></li>
                                     <li><a href="{{ route('cart') }}">Cart</a></li>
                                     @if (Auth::guest())
                                         <li><a href="{{ url('/auth/login') }}"><i class="fa fa-lock"></i> Login</a></li>
-                                        <li><a href="{{ url('/auth/register') }}"><i class="fa fa-user-plus"></i> Register</a></li>
                                     @else
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                               aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="{{ url('/auth/logout') }}"><i class="fa fa-close"></i> Logout</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a href="{{ url('/auth/logout') }}">
+                                                <i class="fa fa-power-off"></i> Logout ({{ Auth::user()->name }})</a></li>
                                     @endif
                                 </ul>
                             </li>

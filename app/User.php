@@ -31,10 +31,25 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password', 'remember_token', 'is_admin'];
 
-    public function ordes()
+    /**
+     * Return all orders by user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders()
     {
         return $this->hasMany('CodeCommerce\Order');
+    }
+
+    /**
+     * Return if user is admin
+     *
+     * @return mixed
+     */
+    public function isAdmin()
+    {
+        return $this->is_admin;
     }
 }

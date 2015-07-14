@@ -2473,3 +2473,7 @@ h2.title {
 .logo {
     font-size: 23px;
 }
+
+.margin-fix {
+    margin-top: 0 !important;
+}

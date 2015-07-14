@@ -90,12 +90,20 @@ class Cart
     }
 
     /**
-     * Destroy item cart
+     * Destroy item cart.
      *
      * @param $id
      */
     public function destroy($id)
     {
         unset($this->items[$id]);
+    }
+
+    /**
+     * Clear cart.
+     */
+    public function clear()
+    {
+        $this->items = [];
     }
 }
