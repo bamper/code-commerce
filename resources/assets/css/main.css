@@ -2477,3 +2477,12 @@ h2.title {
 .margin-fix {
     margin-top: 0 !important;
 }
+
+.form-horizontal .form-group {
+    margin-left: 0 !important;
+}
+
+.sub-title {
+    font-size: 18px;
+    margin-left: 70px;
+}

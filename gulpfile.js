@@ -27,11 +27,12 @@ elixir(function (mix) {
 
     mix.scripts([
         'jquery.min.js',
-        'jquery.bootstrap-touchspin.min.js',
         'bootstrap.min.js',
+        'jquery.bootstrap-touchspin.min.js',
         'jquery.scrollUp.min.js',
         'price-range.js',
         'jquery.prettyPhoto.js',
+        'validator.js',
         'main.js'
     ], 'public/js/app.js');
 

@@ -5,11 +5,11 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-primary">
-                    <div class="panel-heading panel-title">Login</div>
+                    <div class="panel-heading panel-title"><span class="fa fa-lock"></span> Login</div>
                     <div class="panel-body">
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
-                                <strong>Ops!</strong> Houve algum problema com a sua entrada.<br><br>
+                                <strong>Ops!</strong> Houve algum problema com o seu login.<br><br>
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
