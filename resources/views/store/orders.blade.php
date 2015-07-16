@@ -24,7 +24,7 @@
                         @endforeach
                     </td>
                     <td class="text-right" style="vertical-align: middle;">R$ {{ number_format($order->total, 2, ',', '.') }}</td>
-                    <td class="text-center">{{ $order->status }}</td>
+                    <td class="text-center">{{ $order->status() }}</td>
                 </tr>
             @endforeach
             </tbody>

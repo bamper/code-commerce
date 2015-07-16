@@ -84,4 +84,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth.admin', 'where' => ['id
 
     });
 
+    Route::group(['prefix' => 'orders'], function() {
+
+        Route::get('/', ['as' => 'orders', 'uses' => 'Admin\OrdersController@index']);
+
+    });
+
 });
