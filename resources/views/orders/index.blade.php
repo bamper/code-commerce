@@ -40,7 +40,7 @@
                     <td class="vert-align text-right" style="vertical-align: middle;">R$ {{ number_format($order->total, 2, ',', '.') }}</td>
                     <td class="vert-align text-center">{{ $order->status() }}</td>
                     <td class="vert-align text-center">
-                        <a class="btn btn-sm btn-info" href="{{ route('products.edit', ['id' => $order->id]) }}"><span
+                        <a class="btn btn-sm btn-info" href="{{ route('orders.edit', ['id' => $order->id]) }}"><span
                                     class="fa fa-pencil"></span></a>
                     </td>
                 </tr>

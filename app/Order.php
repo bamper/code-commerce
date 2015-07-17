@@ -12,7 +12,7 @@ class Order extends Model
         'status'
     ];
 
-    private $statusDescription = [
+    public $statusDescription = [
         0 => 'Processando',
         1 => 'Aguardando Pagamento',
         2 => 'Aguardando Faturamento',
