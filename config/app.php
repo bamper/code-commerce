@@ -148,7 +148,7 @@ return [
         /*
          * Vendors Service Providers...
          */
-        LaravelPagseguro\LaravelPagseguroServiceProvider::class,
+        CodeCommerce\Providers\PagseguroServiceProvider::class,
     ],
 
     /*
