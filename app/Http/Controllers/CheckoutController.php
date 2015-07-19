@@ -2,32 +2,35 @@
 
 namespace CodeCommerce\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Order;
 use CodeCommerce\OrderItem;
-use CodeCommerce\Events\CheckoutEvent;
 
+use Illuminate\Support\Facades\Log;
 use PHPSC\PagSeguro\Items\Item;
 use PHPSC\PagSeguro\Requests\Checkout\CheckoutService;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class CheckoutController extends Controller
 {
     /**
      * Checkout cart.
      *
+     * @param Session $session
      * @param Order $orderModel
      * @param OrderItem $orderItem
-     * @return bool|\Illuminate\View\View
+     * @param CheckoutService $checkoutService
+     * @return bool|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
-    public function place(Order $orderModel, OrderItem $orderItem, CheckoutService $checkoutService)
+    public function place(Session $session, Order $orderModel, OrderItem $orderItem, CheckoutService $checkoutService)
     {
-        if (!Session::has('cart')) {
+        if (!$session->has('cart')) {
             return false;
         }
 
-        $cart = Session::get('cart');
+        $cart = $session->get('cart');
 
         if ($cart->getTotal() > 0) {
 
@@ -36,12 +39,13 @@ class CheckoutController extends Controller
                 'total' => $cart->getTotal()
             ]);
 
-            // $checkout = $checkoutService->createCheckoutBuilder();
+            $checkout = $checkoutService->createCheckoutBuilder();
+            $checkout->setReference($order->id);
 
             foreach ($cart->all() as $id => $item) {
 
                 // Adiciona o item no carrinho do PagSeguro
-                // $checkout->addItem(new Item($id, $item['name'], number_format($item['price'], 2, '.', ''), $item['qtty']));
+                $checkout->addItem(new Item($id, $item['name'], number_format($item['price'], 2, '.', ''), $item['qtty']));
 
                 $order->items()->create([
                     'product_id' => $id,
@@ -56,13 +60,23 @@ class CheckoutController extends Controller
             // Send e-mail event
             // event(new CheckoutEvent(Auth::user(), $order));
 
-            // $response = $checkoutService->checkout($checkout->getCheckout());
+            $checkout = $checkout->getCheckout();
 
-            // return redirect($response->getRedirectionUrl());
+            $response = $checkoutService->checkout($checkout);
 
-            return view('store.checkout', compact('order'));
+            return redirect($response->getRedirectionUrl());
         }
 
         return view('store.checkout', ['cart' => 'empty']);
+    }
+
+    /**
+     * Checkout pagseguro.
+     *
+     * @param Request $request
+     */
+    public function pagseguro(Request $request)
+    {
+        Log::info($request->all());
     }
 }

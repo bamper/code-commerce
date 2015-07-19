@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('account/orders', ['as' => 'account.orders', 'uses' => 'AccountController@orders']);
 });
 
+Route::post('pagseguro', ['as' => 'checkout.pagseguro', 'uses' => 'CheckoutController@pagseguro']);
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController'

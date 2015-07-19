@@ -6,20 +6,35 @@ use CodeCommerce\Cart;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class CartController extends Controller
 {
+    /**
+     * @var Session
+     */
+    private $session;
+
+    /**
+     * @var Cart
+     */
     private $cart;
 
+    /**
+     * @var Product
+     */
     private $product;
 
     /**
+     * Construct injections.
+     *
+     * @param Session $session
      * @param Cart $cart
      * @param Product $product
      */
-    public function __construct(Cart $cart, Product $product)
+    public function __construct(Session $session, Cart $cart, Product $product)
     {
+        $this->session = $session;
         $this->cart = $cart;
         $this->product = $product;
     }
@@ -31,11 +46,11 @@ class CartController extends Controller
      */
     public function index()
     {
-        if (!Session::has('cart')) {
-            Session::set('cart', $this->cart);
+        if (!$this->session->has('cart')) {
+            $this->session->set('cart', $this->cart);
         }
 
-        return view('store.cart', ['cart' => Session::get('cart')]);
+        return view('store.cart', ['cart' => $this->session->get('cart')]);
     }
 
     /**
@@ -51,7 +66,7 @@ class CartController extends Controller
         $product = $this->product->find($id);
         $cart->add($id, $product->name, $product->price);
 
-        Session::set('cart', $cart);
+        $this->session->set('cart', $cart);
 
         return redirect()->route('cart');
     }
@@ -67,7 +82,7 @@ class CartController extends Controller
         $cart = $this->getCart();
         $cart->remove($id);
 
-        Session::set('cart', $cart);
+        $this->session->set('cart', $cart);
 
         return redirect()->route('cart');
     }
@@ -102,8 +117,8 @@ class CartController extends Controller
      */
     public function getCart()
     {
-        if (Session::has('cart')) {
-            return Session::get('cart');
+        if ($this->session->has('cart')) {
+            return $this->session->get('cart');
         }
 
         return $this->cart;
